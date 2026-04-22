@@ -61,11 +61,11 @@ omniroute
 
 Нажимаем **Добавить соединение** → **AWS Builder ID**
 
-![AWS Builder ID](./images/AWS_Builder_ID.png)
+<img src="./images/AWS_Builder_ID.png" width="500">
 
 Нажимаем на ссылку и проходим верификацию
 
-![Connection KiroAI](./images/Connection_KiroAI.png)
+<img src="./images/Connection_KiroAI.png" width="500">
 
 ### 4.4. Создание API ключа
 
