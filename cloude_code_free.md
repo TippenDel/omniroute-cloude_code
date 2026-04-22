@@ -32,13 +32,13 @@ npm install -g @anthropic-ai/claude-code
 omniroute
 ```
 Выбираем `провайдеры` - `Kiro AI`
-![KiroAI](./images/KiroAI.png)
+<img src="./images/KiroAI.png" width="600">
 Нажимаем `добавить соединение` - `AWS Builder ID`
-![AWS Builder ID](./images/AWS_Builder_ID.png)
+<img src="./images/AWS_Builder_ID.png" width="600">
 Нажимаем на ссылку и верифицируемся...
-![Connection KiroAI](./images/Connection_KiroAI.png)
+<img src="./images/Connection_KiroAI.png" width="600">
 Возвращаемся в omniroute и видим, что подключена учетная запись к Kiro AI. Теперь нужно создать ключ. Переходим в `менеджер API` - `создать ключ API`
-![APIkey](./images/APIkey.png)
+<img src="./images/APIkey.png" width="600">
 Придумать имя (например: CloudeCode)
 `ОБЯЗАТЕЛЬНО!!!` сохрани ключ!!!
 
@@ -47,9 +47,9 @@ omniroute
 Заменить `YOUR_KEY`, `YOUR_URL`, `YOUR_MODEL`, `_YOU_`.
 * `YOUR_KEY` - сохраняли ранее
 * `YOUR_URL`
-![URL](./images/URL.png)
+<img src="./images/URL.png" width="600">
 * `YOUR_MODEL` -
-![URL](./images/model.png)
+<img src="./images/model.png" width="600">
 ```
 #!/bin/zsh
 
