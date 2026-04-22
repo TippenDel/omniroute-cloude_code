@@ -33,12 +33,16 @@ omniroute
 ```
 Выбираем `провайдеры` - `Kiro AI`
 ![KiroAI](./images/KiroAI.png)
+
 Нажимаем `добавить соединение` - `AWS Builder ID`
 ![AWS Builder ID](./images/AWS_Builder_ID.png)
+
 Нажимаем на ссылку и верифицируемся...
 ![Connection KiroAI](./images/Connection_KiroAI.png)
+
 Возвращаемся в omniroute и видим, что подключена учетная запись к Kiro AI. Теперь нужно создать ключ. Переходим в `менеджер API` - `создать ключ API`
 ![APIkey](./images/APIkey.png)
+
 Придумать имя (например: CloudeCode)
 `ОБЯЗАТЕЛЬНО!!!` сохрани ключ!!!
 
