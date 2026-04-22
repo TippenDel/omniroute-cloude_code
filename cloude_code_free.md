@@ -32,4 +32,4 @@ npm install -g @anthropic-ai/claude-code
 omniroute
 ```
 Выбираем `провайдеры` - `Kiro AI`
-![KiroAI](./Desktop/KiroAI.png)
+![KiroAI](./images/KiroAI.png)
