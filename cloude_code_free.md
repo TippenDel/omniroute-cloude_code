@@ -1,60 +1,105 @@
-## Проверить версию `node`, должна быть `v22.22.2(LTS)`
-```
+# Установка Claude Code через OmniRoute
+
+## 1. Проверка версии Node.js
+
+Убедитесь, что установлена версия `v22.22.2 (LTS)`:
+
+```bash
 node -v
 ```
-## Устанавить `omniroute`
-Сделай личную директорию для глобальных npm-пакетов:
-```
+
+## 2. Установка OmniRoute
+
+### 2.1. Настройка директории для глобальных npm-пакетов
+
+```bash
 mkdir -p ~/.npm-global
 npm config set prefix ~/.npm-global
 echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.zshrc
 ```
-Применить:
-```
+
+### 2.2. Применение изменений
+
+```bash
 source ~/.zshrc
 ```
-Потом установить:
-```
+
+### 2.3. Установка OmniRoute
+
+```bash
 npm install -g omniroute
 ```
-Проверка:
-```
+
+### 2.4. Проверка установки
+
+```bash
 which omniroute
 omniroute --help
 ```
-## Установить `claude code`
-```
+
+## 3. Установка Claude Code
+
+```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
-## Запускаем `omniroute`
-```
+## 4. Настройка подключения к Kiro AI
+
+### 4.1. Запуск OmniRoute
+
+```bash
 omniroute
 ```
-Выбираем `провайдеры` - `Kiro AI`
+
+### 4.2. Выбор провайдера
+
+Выбираем **Провайдеры** → **Kiro AI**
+
 ![KiroAI](./images/KiroAI.png)
 
-Нажимаем `добавить соединение` - `AWS Builder ID`
+### 4.3. Добавление соединения
+
+Нажимаем **Добавить соединение** → **AWS Builder ID**
+
 ![AWS Builder ID](./images/AWS_Builder_ID.png)
 
-Нажимаем на ссылку и верифицируемся...
+Нажимаем на ссылку и проходим верификацию
+
 ![Connection KiroAI](./images/Connection_KiroAI.png)
 
-Возвращаемся в omniroute и видим, что подключена учетная запись к Kiro AI. Теперь нужно создать ключ. Переходим в `менеджер API` - `создать ключ API`
+### 4.4. Создание API ключа
+
+Возвращаемся в OmniRoute. Переходим в **Менеджер API** → **Создать ключ API**
+
 ![APIkey](./images/APIkey.png)
 
-Придумать имя (например: CloudeCode)
-`ОБЯЗАТЕЛЬНО!!!` сохрани ключ!!!
+Придумайте имя (например: `CloudeCode`)
 
-## запускаем claude code с подменными переменными на mac
-Создать и сохранить в файл `start-claude.sh`. 
-Заменить `YOUR_KEY`, `YOUR_URL`, `YOUR_MODEL`, `_YOU_`.
-* `YOUR_KEY` - сохраняли ранее
-* `YOUR_URL`
+> **⚠️ ВАЖНО!** Обязательно сохраните ключ в надежном месте!
+
+### 4.5. Получение параметров подключения
+
+Вам понадобятся следующие параметры:
+
+**YOUR_URL** - URL эндпоинта:
+
 ![URL](./images/URL.png)
-* `YOUR_MODEL` -
+
+**YOUR_MODEL** - название модели:
+
 ![model](./images/model.png)
-```
+
+## 5. Запуск Claude Code
+
+### Вариант 1: Скрипт запуска
+
+Создайте файл `start-claude.sh` и замените параметры:
+- `YOUR_KEY` - API ключ, который вы сохранили
+- `YOUR_URL` - URL из OmniRoute
+- `YOUR_MODEL` - название модели
+- `_YOU_` - ваше имя пользователя macOS
+
+```bash
 #!/bin/zsh
 
 # API Key
@@ -63,37 +108,41 @@ export ANTHROPIC_AUTH_TOKEN="YOUR_KEY"
 # OmniRoute endpoint
 export ANTHROPIC_BASE_URL="YOUR_URL"
 
-# ЯВНОЕ указание модели (если требуется)
+# Указание модели
 export ANTHROPIC_MODEL="YOUR_MODEL"
 
-# Если gateway не любит experimental betas
+# Отключение experimental betas
 export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1
 
 exec /Users/_YOU_/.npm-global/bin/claude
 ```
-Если файл лежит на рабочем столе macOS (Desktop), команда будет такая:
-```
+
+Сделайте файл исполняемым:
+
+```bash
 chmod +x ~/Desktop/start-claude.sh
 ```
+
 Запуск:
-```
-~/Desktop/start-claude.sh
-```
 
-
-Запуск сначала omniroute, потом cloude
-```
+```bash
+# Сначала запустите OmniRoute
 omniroute
+
+# Затем в новом терминале запустите Claude Code
 ~/Desktop/start-claude.sh
 ```
 
-ИЛИ создать файл `start-claude.command`, который по двойному клику будет запускать сам
-```
+### Вариант 2: Автоматический запуск (двойной клик)
+
+Создайте файл `start-claude.command` для запуска двойным кликом:
+
+```bash
 #!/bin/zsh
 
 # =====================================
 # OmniRoute + Claude Code
-# запуск по двойному клику
+# Автоматический запуск
 # =====================================
 
 echo "🚀 Запускаю OmniRoute..."
@@ -101,7 +150,7 @@ echo "🚀 Запускаю OmniRoute..."
 omniroute > ~/omniroute.log 2>&1 &
 OMNI_PID=$!
 
-echo "⏳ Жду запуск OmniRoute..."
+echo "⏳ Ожидание запуска OmniRoute..."
 
 TRIES=0
 
@@ -113,7 +162,7 @@ do
     if [ $TRIES -gt 30 ]; then
         echo "❌ OmniRoute не запустился"
         echo "Лог: ~/omniroute.log"
-        read -n 1 -s -r -p "Нажми любую клавишу..."
+        read -n 1 -s -r -p "Нажмите любую клавишу..."
         exit 1
     fi
 done
@@ -130,4 +179,16 @@ echo "🤖 Запускаю Claude Code..."
 exec claude
 ```
 
-# НАСЛАЖДАЕМСЯ)
+Сделайте файл исполняемым:
+
+```bash
+chmod +x ~/Desktop/start-claude.command
+```
+
+Теперь можно запускать двойным кликом по файлу!
+
+---
+
+## Готово! 🎉
+
+Теперь вы можете использовать Claude Code через OmniRoute с Kiro AI.
