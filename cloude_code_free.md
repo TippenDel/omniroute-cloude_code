@@ -192,3 +192,5 @@ chmod +x ~/Desktop/start-claude.command
 ## Готово! 🎉
 
 Теперь вы можете использовать Claude Code через OmniRoute с Kiro AI.
+
+![CloudeCode](./images/CloudeCode.png)
